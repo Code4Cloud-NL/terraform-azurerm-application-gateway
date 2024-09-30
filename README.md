@@ -509,7 +509,5 @@ module "application_gateway" {
 
 # Author
 
-Stefan Vonk (stefan.vonk@pinkelephant.nl) Technical Specialist
-
-Pink Elephant B.V. Gooimeer 18 1411 DE Naarden Netherlands
+Stefan Vonk (vonk.stefan@live.nl) Technical Specialist
 <!-- END_TF_DOCS -->
