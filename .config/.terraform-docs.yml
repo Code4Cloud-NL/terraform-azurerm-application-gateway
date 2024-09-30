@@ -1,0 +1,84 @@
+formatter: "" # this is required
+
+version: ""
+
+header-from: main.tf
+footer-from: ""
+
+recursive:
+  enabled: false
+  path: modules
+
+sections:
+  hide: []
+  show: []
+
+content: |-
+  # Azure Application Gateway module
+
+  This module simplifies the creation of an Application Gateway in Azure. It is designed to be flexible, modular, and easy to use, ensuring a seamless Azure Application Gateway deployment.
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  {{ .Resources }}
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  ## Example(s)
+
+  ### Application Gateway with required inputs only
+
+  ```hcl
+  {{ include ".examples/example_basic.tf"}}
+  ```
+
+  ### Application Gateway with (almost) all of the inputs configured (for reference purposes)
+
+  ```hcl
+  {{ include ".examples/example_reference.tf"}}
+  ```
+
+  # Known issues and limitations
+
+  - The backend_address_pool, backend_http_settings, http_listener, private_link_configuration, request_routing_rule, redirect_configuration, probe, ssl_certificate, and frontend_port properties are Sets as the service API returns these lists of objects in a different order from how the provider sends them. As Sets are stored using a hash, if one value is added or removed from the Set, Terraform considers the entire list of objects changed and the plan shows that it is removing every value in the list and re-adding it with the new information. Though Terraform is showing all the values being removed and re-added, we are not actually removing anything unless the user specifies a removal in the configfile. Source: https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/application_gateway.
+
+  # Author
+
+  Stefan Vonk (stefan.vonk@pinkelephant.nl) Technical Specialist
+
+  Pink Elephant B.V. Gooimeer 18 1411 DE Naarden Netherlands
+
+output:
+  file: ""
+  mode: inject
+  template: |-
+    <!-- BEGIN_TF_DOCS -->
+    {{ .Content }}
+    <!-- END_TF_DOCS -->
+
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: true
+  hide-empty: false
+  html: true
+  indent: 2
+  lockfile: true
+  read-comments: true
+  required: true
+  sensitive: true
+  type: true
